@@ -16,10 +16,8 @@ def fetch_text_from_url(url):
     response = requests.get(url)
     if response.status_code == 200:
         soup = BeautifulSoup(response.content, 'html.parser')
-        # Find all elements with the specified class
         content_divs = soup.find_all('div', class_='Lyrics__Container-sc-1ynbvzw-1 kUgSbL')
         if content_divs:
-            # Concatenate all the text from the found elements
             text = ' '.join([div.get_text(separator=' ') for div in content_divs])
             return text
         else:
@@ -30,13 +28,13 @@ def fetch_text_from_url(url):
         return ""
 
 def clean_text(text):
-    text = re.sub(r'\[.*?\]', '', text)  # Remove brackets
-    text = text.replace('"', ' ')        # Replace double quotes with space
-    text = text.replace("'", ' ')        # Replace single quotes with space
-    text = text.replace('<br>', ' ')     # Replace <br> tags with space
-    text = re.sub(r'\s+', ' ', text)     # Replace multiple spaces with a single space
-    text = re.sub(r'(\w)([A-Z])', r'\1 \2', text)  # Add space between words stuck together
-    return text.strip()                  # Remove leading and trailing whitespace
+    text = re.sub(r'\[.*?\]', '', text)  
+    text = text.replace('"', ' ')        
+    text = text.replace("'", ' ')        
+    text = text.replace('<br>', ' ')     
+    text = re.sub(r'\s+', ' ', text)     
+    text = re.sub(r'(\w)([A-Z])', r'\1 \2', text)  
+    return text.strip()                  
 
 cleaned_texts = []
 
@@ -46,7 +44,6 @@ for url in urls:
         cleaned_text = clean_text(text)
         cleaned_texts.append({'url': url, 'cleaned_text': cleaned_text})
 
-# Save cleaned texts to a JSON file
 with open('cleaned_texts.json', 'w', encoding='utf-8') as f:
     json.dump(cleaned_texts, f, ensure_ascii=False, indent=4)
 
