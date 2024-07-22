@@ -124,14 +124,15 @@ def fetch_text_from_url(url):
         print(f"Failed to fetch {url}")
         return ""
 
+
+import re
+
 def clean_text(text):
-    text = re.sub(r'\[.*?\]', '', text)  
-    text = text.replace('"', ' ')        
-    text = text.replace("'", ' ')        
-    text = text.replace('<br>', ' ')     
-    text = re.sub(r'\s+', ' ', text)     
-    text = re.sub(r'(\w)([A-Z])', r'\1 \2', text)  
-    return text.strip()                  
+    text = re.sub(r'\[.*?\]', '', text)
+    text = text.replace('"', ' ')
+    text = text.replace('<br>', ' ')
+    text = re.sub(r'\s+', ' ', text)
+    return text.strip()    
 
 cleaned_texts = []
 

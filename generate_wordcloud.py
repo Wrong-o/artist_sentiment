@@ -8,7 +8,7 @@ import re
 import numpy as np
 from PIL import Image
 from nltk.corpus import stopwords
-
+nltk.download('stopwords')
 #The artist name will be used to identify dir, mask and json
 artist = input("artist: ")
 
@@ -24,12 +24,13 @@ with open(file_path, 'r', encoding='utf-8') as f:
     else:
         text = data['cleaned_text']
 
-text = re.sub(r'([^\w\s])', r' \1 ', text)
+text = re.sub(r"([^\w\s]')", r' \1 ', text)
 text = re.sub(r'[^\w\s]', '', text)
 
 #Lowercase, tokenize
 tokens = nltk.word_tokenize(text)
-lowercase_tokens = [token.lower() for token in tokens]
+filtered_token = [token for token in tokens if len(token) > 1]
+lowercase_tokens = [token.lower() for token in filtered_token]
 
 #Stop words
 swedish_stop_words = set(stopwords.words('swedish'))
@@ -52,7 +53,9 @@ mask = np.array(Image.open(mask_path))
 
 #Max words
 max_words = 150
-wordcloud = WordCloud(width=3840, height=2160, background_color='black', max_words=max_words, mask=mask, contour_width=3, contour_color='black', collocations=False).generate(processed_text)
+wordcloud = WordCloud(width=3840, height=2160, background_color='white', max_words=max_words, mask=mask, contour_width=3, contour_color='black', collocations=False).generate(processed_text)
+with open ('processed_text', 'w') as json_file:
+    json.dump({'processed_text': processed_text}, json_file)
 
 #Display cloud
 plt.figure(figsize=(10, 10))
