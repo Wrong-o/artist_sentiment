@@ -1,2 +1,0 @@
-The letter "o" seem to be a substitute for the word "och", therefore:
-Changed " o " -> " och " 

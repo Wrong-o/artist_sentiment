@@ -7,7 +7,9 @@ from collections import Counter
 import re
 import numpy as np
 from PIL import Image
+import subprocess
 from nltk.corpus import stopwords
+import tempfile
 nltk.download('stopwords')
 #The artist name will be used to identify dir, mask and json
 artist = input("artist: ")
@@ -47,13 +49,12 @@ for word, count in sorted_most_common_words:
 
 processed_text = ' '.join(filtered_tokens)
 
-#Load mask in same dir as json
 mask_path = os.path.join(artist, f'{artist}_mask.png')
 mask = np.array(Image.open(mask_path))
 
 #Max words
 max_words = 150
-wordcloud = WordCloud(width=3840, height=2160, background_color='white', max_words=max_words, mask=mask, contour_width=3, contour_color='black', collocations=False).generate(processed_text)
+wordcloud = WordCloud(width=3840, height=2160, background_color='black', max_words=max_words, mask=mask, contour_width=3, contour_color='black', collocations=False).generate(processed_text)
 with open ('processed_text', 'w') as json_file:
     json.dump({'processed_text': processed_text}, json_file)
 
