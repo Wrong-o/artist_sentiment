@@ -77,9 +77,9 @@ A song_list.json will be created in a subdirectory named /artist-name. This file
 
 **NOTE** Masks are not automaticly generated, they will have to be done manually. The ones used in the examples are in 4k resolution. The program defaults to "None" if no mask if found in the /artist-name directory with the name "artist-name_mask.png"
 
-##License
+## License
       Feel free to use and modify this code however you want. 
       Please give credit and link back to this project if used.
 
-##Contact:
-      Contact me on 
+## Contact:
+      Contact me on https://www.linkedin.com/in/otto-rongedal/ for business or collaboration related issues
