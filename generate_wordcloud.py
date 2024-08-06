@@ -50,7 +50,15 @@ for word, count in sorted_most_common_words:
 processed_text = ' '.join(filtered_tokens)
 
 mask_path = os.path.join(artist, f'{artist}_mask.png')
-mask = np.array(Image.open(mask_path))
+# Check if the mask file exists
+if os.path.exists(mask_path):
+    # Load the mask image
+    mask = np.array(Image.open(mask_path))
+else:
+    # No mask found, set mask to None
+    mask = None
+
+
 
 #Max words
 max_words = 150
