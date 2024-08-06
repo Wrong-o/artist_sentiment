@@ -71,3 +71,5 @@ plt.figure(figsize=(10, 10))
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis('off')  # Hide the axis
 plt.show()
+wordcloud_path = os.path.join(artist, f'{artist}_wordcloud.png')
+wordcloud.to_file(wordcloud_path)
