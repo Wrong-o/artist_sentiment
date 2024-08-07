@@ -54,7 +54,7 @@ Follow these steps to set up the project on your local machine:
 ## Usage
 Once setup, you will have some examples folders. New artists will appear in the same structure.
    First thing you need to do is run the url_scraper.py:
-      ```bash
+      ```
       python3 url_scraper.py
       ```
 The script will ask for an input, write the artist name as seen on genius.com but substitute spaces with "-" 
@@ -63,7 +63,7 @@ A song_list.json will be created in a subdirectory named /artist-name. This file
 
 # Download and process the text
  Download and process all the text by running
-          ```bash
+          ```
     python3 text_process.py
       ```
  Input the same artist name as in the previous step. 
@@ -71,7 +71,7 @@ A song_list.json will be created in a subdirectory named /artist-name. This file
 
  # Generate wordcloud
  To generate wordcloud, run: 
-           ```bash
+           ```
     python3 generate_wordclound.py
       ```
 
